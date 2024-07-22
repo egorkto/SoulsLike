@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkSpeed: 4
   _runSpeed: 8
-  _jumpForce: 10
+  _jumpForce: 7
+  _dashForce: 14
+  _crouchSpeed: 2
+  _fastCrouchSpeed: 3

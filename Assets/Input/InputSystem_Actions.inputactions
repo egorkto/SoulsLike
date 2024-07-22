@@ -29,7 +29,34 @@
                     "id": "1cdc1ef5-f180-407d-9ba3-8a10e424fea4",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "69e27eda-caa9-409b-b1f7-8b0ac3fd47cf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "4cfac48a-2a50-40e7-a53a-85d814c3bbd3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Roll",
+                    "type": "Button",
+                    "id": "0cdae5c3-21a1-488c-91dc-cfa0a095fb8a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": true
                 }
             ],
@@ -203,10 +230,43 @@
                     "name": "",
                     "id": "a214dca7-fcbd-4f45-bd4f-fd7149bc3d7c",
                     "path": "<Keyboard>/space",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.6,pressPoint=0.6)",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e624738e-954c-41ad-9cfa-8013f154a321",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a919b65b-8d11-43fa-9f6d-823cefef36a7",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26bd3881-f30b-4150-80a5-8ff6d8373fc4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Tap",
+                    "processors": "AxisDeadzone",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
