@@ -7,4 +7,9 @@ public class JumpState : StateMachineBehaviour
         PlayerMoveStateMachine.Instance.Jump();
         Debug.Log("Jump");
     }
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetBool("Jump", false);
+    }
 }

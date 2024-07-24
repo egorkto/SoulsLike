@@ -4,12 +4,12 @@ public class JumpBackState : StateMachineBehaviour
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerMoveStateMachine.Instance.StartJumpBack();
+        PlayerMoveStateMachine.Instance.StartDash(DashDirection.Back);
         Debug.Log("Jump back");
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerMoveStateMachine.Instance.StopJumpBack();
+        PlayerMoveStateMachine.Instance.StopDash();
     }
 }

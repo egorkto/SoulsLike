@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -7,7 +6,7 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private Animator _animator;
     [SerializeField] private MoveInputHandler _inputHandler;
-    [SerializeField] private float _speedSlowingInJump;
+    [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _fallAcceleration;
 
     private CharacterController _controller;
@@ -16,6 +15,7 @@ public class PlayerMover : MonoBehaviour
     private float _yMoving = 0;
     private float _currentSpeed = 0;
     private bool _canRotate = true;
+    private float _speed = 0;
 
     public void SetSpeed(float speed)
     {
@@ -27,15 +27,11 @@ public class PlayerMover : MonoBehaviour
         _yMoving = force;
     }
 
-    public void LookToCamera()
-    {
-        _orientation = _camera.transform.forward;
-        _controller.transform.LookAt(new Vector3(_orientation.x, 0, _orientation.z) + _controller.transform.position);
-    }
-
     public void Dash(float force, DashDirection direction)
     {
         _currentSpeed = direction == DashDirection.Look ? force : -force;
+        if(direction == DashDirection.Back)
+            _orientation = _controller.transform.forward;
     }
     
     public void StopRotating()
@@ -58,19 +54,14 @@ public class PlayerMover : MonoBehaviour
         if(_canRotate)
         {
             _orientation = _camera.transform.right * _inputHandler.MoveInput.x + _camera.transform.forward * _inputHandler.MoveInput.y;
-            _controller.transform.LookAt(new Vector3(_orientation.x, 0, _orientation.z) + _controller.transform.position);
+            var rotation = Quaternion.LookRotation(_controller.transform.forward + new Vector3(_orientation.x, 0, _orientation.z));
+            _controller.transform.rotation = Quaternion.Slerp(_controller.transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
         }
-        if (_controller.isGrounded)
-        {
-            _moveDirection = new Vector3(_orientation.x * _currentSpeed, 0, _orientation.z * _currentSpeed);
-        }
-        else
-        {
-            _moveDirection = Vector3.Lerp(_moveDirection, Vector3.zero, _speedSlowingInJump * Time.deltaTime);
+        if (!_controller.isGrounded)
             _yMoving -= _fallAcceleration * Time.deltaTime;
-        }
+        _moveDirection = new Vector3(_orientation.x * _currentSpeed, 0, _orientation.z * _currentSpeed);
         _controller.Move(new Vector3(_moveDirection.x, _yMoving, _moveDirection.z) * Time.deltaTime);
-        _animator.SetFloat("YSpeed", _controller.velocity.y);
+        _animator.SetBool("Grounded", _controller.isGrounded);
     }
 }
 

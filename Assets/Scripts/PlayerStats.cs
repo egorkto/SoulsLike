@@ -8,12 +8,14 @@ public class PlayerStats : ScriptableObject
     public float CrouchSpeed => _crouchSpeed;
     public float FastCrouchSpeed => _fastCrouchSpeed;
     public float JumpForce => _jumpForce;
-    public float DashForce => _dashForce;
+    public float RollForce => _rollForce;
+    public float JumpBackForce => _jumpBackForce;
 
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private float _dashForce;
     [SerializeField] private float _crouchSpeed;
     [SerializeField] private float _fastCrouchSpeed;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _rollForce;
+    [SerializeField] private float _jumpBackForce;
 }

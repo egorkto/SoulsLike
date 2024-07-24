@@ -23,7 +23,8 @@ public class MoveInputHandler : MonoBehaviour
 
     public void OnJump()
     {
-        _animator.SetTrigger("Jump");
+        if(_animator.GetBool("Grounded"))
+            _animator.SetBool("Jump", true);
     }
 
     public void OnRoll()

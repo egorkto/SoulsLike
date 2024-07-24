@@ -37,25 +37,13 @@ public class PlayerMoveStateMachine : MonoBehaviour
         _playerMover.Jump(_playerStats.JumpForce);
     }
 
-    public void StartRoll()
+    public void StartDash(DashDirection direction)
     {
-        _playerMover.Dash(_playerStats.DashForce, DashDirection.Look);
+        _playerMover.Dash(direction == DashDirection.Look ? _playerStats.RollForce : _playerStats.JumpBackForce, direction);
         _playerMover.StopRotating();
     }
 
-    public void StopRoll()
-    {
-        _playerMover.StartRotating();
-    }
-
-    public void StartJumpBack()
-    {
-        _playerMover.Dash(_playerStats.DashForce, DashDirection.Back);
-        _playerMover.LookToCamera();
-        _playerMover.StopRotating();
-    }
-
-    public void StopJumpBack() 
+    public void StopDash()
     {
         _playerMover.StartRotating();
     }
