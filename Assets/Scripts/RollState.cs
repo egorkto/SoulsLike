@@ -1,15 +1,13 @@
-using UnityEngine;
-
-public class RollState : StateMachineBehaviour
+public class RollState : MoveState
 {
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnEnterState(PlayerMover mover, PlayerStats stats)
     {
-        PlayerMoveStateMachine.Instance.StartDash(DashDirection.Look);
-        Debug.Log("Roll");
+        mover.SetPlaneSpeed(stats.RollForce);
+        mover.SetRotating(false);
     }
 
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnExitState(PlayerMover mover)
     {
-        PlayerMoveStateMachine.Instance.StopDash();
+        mover.SetRotating(true);
     }
 }

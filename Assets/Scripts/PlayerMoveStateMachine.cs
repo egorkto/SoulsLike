@@ -2,56 +2,27 @@ using UnityEngine;
 
 public class PlayerMoveStateMachine : MonoBehaviour
 {
-    public static PlayerMoveStateMachine Instance = null;
+    public static PlayerMoveStateMachine Instance => _instance;
 
-    [SerializeField] private PlayerStats _playerStats;
     [SerializeField] private PlayerMover _playerMover;
+    [SerializeField] private PlayerStats _playerStats;
 
-    public void Stand()
+    private static PlayerMoveStateMachine _instance;
+
+    public void EnterState(IMoveState state)
     {
-        _playerMover.SetSpeed(0);
+        state.OnEnterState(_playerMover, _playerStats);
     }
 
-    public void Walk()
+    public void ExitState(IMoveState state)
     {
-        _playerMover.SetSpeed(_playerStats.WalkSpeed);
+        state.OnExitState(_playerMover);
     }
 
-    public void Run()
+    private void Awake()
     {
-        _playerMover.SetSpeed(_playerStats.RunSpeed);
-    }
-
-    public void Crouch()
-    {
-        _playerMover.SetSpeed(_playerStats.CrouchSpeed);
-    }
-
-    public void FastCrouch()
-    {
-        _playerMover.SetSpeed(_playerStats.FastCrouchSpeed);
-    }
-
-    public void Jump()
-    {
-        _playerMover.Jump(_playerStats.JumpForce);
-    }
-
-    public void StartDash(DashDirection direction)
-    {
-        _playerMover.Dash(direction == DashDirection.Look ? _playerStats.RollForce : _playerStats.JumpBackForce, direction);
-        _playerMover.StopRotating();
-    }
-
-    public void StopDash()
-    {
-        _playerMover.StartRotating();
-    }
-
-    private void Start()
-    {
-        if (Instance == null) 
-            Instance = this;
+        if (_instance == null) 
+            _instance = this;
         else
             Destroy(gameObject);
     }

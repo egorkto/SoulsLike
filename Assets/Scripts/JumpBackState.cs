@@ -1,15 +1,13 @@
-using UnityEngine;
-
-public class JumpBackState : StateMachineBehaviour
+public class JumpBackState : MoveState
 {
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnEnterState(PlayerMover mover, PlayerStats stats)
     {
-        PlayerMoveStateMachine.Instance.StartDash(DashDirection.Back);
-        Debug.Log("Jump back");
+        mover.SetPlaneSpeed(stats.JumpBackForce);
+        mover.SetRotating(false);
     }
 
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnExitState(PlayerMover mover)
     {
-        PlayerMoveStateMachine.Instance.StopDash();
+        mover.SetRotating(true);
     }
 }

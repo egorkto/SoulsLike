@@ -51,13 +51,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Roll",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "0cdae5c3-21a1-488c-91dc-cfa0a095fb8a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "ee3ea568-03fb-4d56-b323-d5806c454054",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -263,10 +272,21 @@
                     "name": "",
                     "id": "26bd3881-f30b-4150-80a5-8ff6d8373fc4",
                     "path": "<Keyboard>/space",
-                    "interactions": "Tap",
+                    "interactions": "Tap(duration=0.3)",
                     "processors": "AxisDeadzone",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Roll",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6aeafb38-b896-4715-ba39-551bb6f6fc9c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
