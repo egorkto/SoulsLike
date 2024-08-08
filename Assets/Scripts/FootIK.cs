@@ -3,6 +3,7 @@ using UnityEngine;
 public class FootIK : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private CharacterController _controller;
     [SerializeField] [Range(0, 1)] private float _weight = 1f;
     [SerializeField] [Range(0, 1)] private float _hipsWeight = 0.75f;
     [SerializeField] [Range(0, 1)] private float _footPositionWeight = 1f;
@@ -24,7 +25,7 @@ public class FootIK : MonoBehaviour
     private void OnAnimatorIK(int layerIndex)
     {
         _falloffWeight = _lGrounded || _rGrounded ? _weight : 0;
-        if (_animator.GetBool("Grounded"))
+        if (_controller.isGrounded)
         {
             FootSolver(HumanBodyBones.LeftFoot, ref _lIKPosition, ref _lNormal, ref _lIKRotation, ref _lGrounded);
             FootSolver(HumanBodyBones.RightFoot, ref _rIKPosition, ref _rNormal, ref _rIKRotation, ref _rGrounded);

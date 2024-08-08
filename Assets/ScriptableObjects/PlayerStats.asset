@@ -19,3 +19,4 @@ MonoBehaviour:
   _jumpForce: 7.5
   _rollForce: 7
   _jumpBackForce: 7
+  _fallSpeed: 0

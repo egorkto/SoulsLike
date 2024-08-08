@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStats", menuName = "Scriptable Objects/PlayerStats")]
-public class PlayerStats : ScriptableObject
+public class PlayerStats : ScriptableObject, IPlayerMoveStats
 {
     public float WalkSpeed => _walkSpeed;
     public float RunSpeed => _runSpeed;
@@ -10,6 +10,7 @@ public class PlayerStats : ScriptableObject
     public float JumpForce => _jumpForce;
     public float RollForce => _rollForce;
     public float JumpBackForce => _jumpBackForce;
+    public float FallSpeed => _fallSpeed;
 
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
@@ -18,4 +19,5 @@ public class PlayerStats : ScriptableObject
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _rollForce;
     [SerializeField] private float _jumpBackForce;
+    [SerializeField] private float _fallSpeed;
 }

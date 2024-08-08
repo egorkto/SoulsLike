@@ -15,4 +15,9 @@ public class DamageColliderActivator : MonoBehaviour
         if (_player.Weapon != null)
             _player.Weapon.DamageCollider.gameObject.SetActive(false);
     }
+
+    private void Start()
+    {
+        DisableDamageCollider();
+    }
 }
