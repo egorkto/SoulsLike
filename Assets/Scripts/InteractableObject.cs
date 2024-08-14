@@ -1,5 +1,6 @@
 using UnityEngine;
 
-public class InteractableObject<T> : MonoBehaviour where T : PlayerState
+public abstract class InteractableObject : MonoBehaviour
 {
+    public abstract void ApplyInteractionState(IInteractionApplyerState applyer);
 }

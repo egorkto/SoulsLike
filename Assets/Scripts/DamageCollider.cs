@@ -7,7 +7,7 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit: " + other.gameObject.name);
+        //Debug.Log("Hit: " + other.gameObject.name);
         if(other.TryGetComponent<IDamagable>(out var damagable))
             Hit?.Invoke(damagable);
     }
